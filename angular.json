@@ -223,7 +223,16 @@
               }
             ],
             "styles": [
-              "projects/web/src/styles.css"
+              {
+                "input": "@angular/material/prebuilt-themes/azure-blue.css",
+                "bundleName": "azure-blue",
+                "inject": true
+              },
+              {
+                "input": "projects/web/src/styles.css",
+                "bundleName": "styles.css",
+                "inject": true
+              }
             ],
             "scripts": []
           },
@@ -281,7 +290,16 @@
               }
             ],
             "styles": [
-              "projects/web/src/styles.css"
+              {
+                "input": "@angular/material/prebuilt-themes/azure-blue.css",
+                "bundleName": "azure-blue",
+                "inject": true
+              },
+              {
+                "input": "projects/web/src/styles.css",
+                "bundleName": "styles.css",
+                "inject": true
+              }
             ],
             "scripts": []
           }
