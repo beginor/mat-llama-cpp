@@ -1,6 +1,6 @@
 /*
- * Public API Surface of app-shared
+ * Public API Surface of llama-cpp
  */
 
-export * from './lib/app-shared.service';
-export * from './lib/app-shared.component';
+export * from './lib/llama-cpp.service';
+export * from './lib/llama-cpp.component';

@@ -9,23 +9,23 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "app-shared": {
+    "llama-cpp": {
       "projectType": "library",
-      "root": "projects/app-shared",
-      "sourceRoot": "projects/app-shared/src",
+      "root": "projects/llama-cpp",
+      "sourceRoot": "projects/llama-cpp/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/app-shared/ng-package.json"
+            "project": "projects/llama-cpp/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/app-shared/tsconfig.lib.prod.json"
+              "tsConfig": "projects/llama-cpp/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/app-shared/tsconfig.lib.json"
+              "tsConfig": "projects/llama-cpp/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -33,7 +33,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/app-shared/tsconfig.spec.json",
+            "tsConfig": "projects/llama-cpp/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -44,8 +44,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/app-shared/**/*.ts",
-              "projects/app-shared/**/*.html"
+              "projects/llama-cpp/**/*.ts",
+              "projects/llama-cpp/**/*.html"
             ]
           }
         }

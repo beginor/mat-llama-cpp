@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-app-shared',
+  selector: 'lib-llama-cpp',
   standalone: true,
   imports: [],
   template: `
     <p>
-      app-shared works!
+      llama-cpp works!
     </p>
   `,
   styles: ``
