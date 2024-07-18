@@ -1,59 +1,70 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
 import {
-    ServerHealth,
-    ServerProps,
-    GenerationSettings,
-    CompletionOptions,
-    CompletionResponseBase,
-    CompletionFinalResponse,
-    Timings,
-    Embedding,
-    Content,
-    Tokens
+    ServerHealth, ServerProps, GenerationSettings, CompletionOptions,
+    CompletionResponseBase, CompletionFinalResponse, Timings, Embedding,
+    Content, Tokens,
 } from './models';
+import { PromptFormatter } from './prompts';
+import { formatters } from './formatters';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LlamaCppService {
 
-    public baseUrl = '';
+    public baseUrl: string;
 
-    public health = new BehaviorSubject<ServerHealth>({} as ServerHealth);
-    public props = new BehaviorSubject<ServerProps>(
-        { default_generation_settings: {} } as ServerProps
-    );
-    public defaultGenerationSettings = new BehaviorSubject<GenerationSettings>(
-        {} as GenerationSettings
-    );
-    public timings = new BehaviorSubject<Timings>({} as Timings);
+    public health: ServerHealth;
+    public props: ServerProps;
+    public defaultGenerationSettings: GenerationSettings;
+    public timings: Timings;
+
+    public get model(): string {
+        const model = this.defaultGenerationSettings.model;
+        if (model) {
+            return model.substring(model.lastIndexOf('/') + 1).toLowerCase();
+        }
+        return '';
+    }
 
     constructor(
         private http: HttpClient
-    ) { }
+    ) {
+        this.baseUrl = '';
+        this.health = {} as ServerHealth;
+        this.props = { default_generation_settings: {} } as ServerProps;
+        this.defaultGenerationSettings = this.props.default_generation_settings;
+        this.timings = {} as Timings;
+    }
 
-    public embedding(content: Content): Observable<Embedding> {
-        return this.http.post<Embedding>(
+    public embedding(
+        content: Content
+    ): Promise<Embedding> {
+        return lastValueFrom(this.http.post<Embedding>(
             `${this.baseUrl}/embedding`,
             content
-        );
+        ));
     }
 
-    public tokenize(content: Content): Observable<Tokens> {
-        return this.http.post<Tokens>(
+    public tokenize(
+        content: Content
+    ): Promise<Tokens> {
+        return lastValueFrom(this.http.post<Tokens>(
             `${this.baseUrl}/tokenize`,
             content
-        );
+        ));
     }
 
-    public detokenize(tokens: Tokens): Observable<Content> {
-        return this.http.post<Content>(
+    public detokenize(
+        tokens: Tokens
+    ): Promise<Content> {
+        return lastValueFrom(this.http.post<Content>(
             `${this.baseUrl}/detokenize`,
             tokens
-        );
+        ));
     }
 
     public createCompletionOptions(
@@ -62,52 +73,6 @@ export class LlamaCppService {
         const defaultOptions = this.createDefaultOptions();
         Object.assign(defaultOptions, params);
         return defaultOptions;
-    }
-
-    public completion(
-        options: CompletionOptions,
-        signal: AbortSignal | undefined = undefined
-    ): Observable<string> {
-        const observable = new Observable<string>((subscriber) => {
-            /*
-            fetch(`${this.baseUrl}/completions`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(options),
-                signal
-            }).then(res => {
-                if (!options.stream) {
-                    res.json().then((json: CompletionFinalResponse) => {
-                        subscriber.next(json.content);
-                        this.timings.next(json.timings);
-                    }).catch(ex => {
-                        subscriber.error(ex);
-                    }).finally(() => {
-                        subscriber.complete();
-                    });
-                }
-                else {
-                    const reader = res.body!.getReader();
-                    let done = false;
-                    let value: Uint8Array | undefined;
-                    const decoder = new TextDecoder();
-                    while (!done) {
-
-                        reader.read().then(r => {
-                            done = r.done;
-                            value = r.value;
-                        })
-                    }
-                }
-            }).catch(ex => {
-                subscriber.error(ex);
-            })
-            */
-        });
-        return observable;
     }
 
     public async *streamCompletion(
@@ -126,7 +91,7 @@ export class LlamaCppService {
         });
         if (!options.stream) {
             const json = await res.json() as CompletionFinalResponse;
-            this.timings.next(json.timings);
+            this.timings = json.timings;
             yield Promise.resolve(json.content);
         }
         else {
@@ -146,7 +111,7 @@ export class LlamaCppService {
                             const content = json.content;
                             if (json.stop) {
                                 const fr = json as CompletionFinalResponse;
-                                this.timings.next(fr.timings);
+                                this.timings = fr.timings;
                             }
                             yield Promise.resolve(content);
                         }
@@ -209,6 +174,13 @@ export class LlamaCppService {
                 'Accept': 'application/json',
                 'Cache-Control': 'no-cache',
             },
+        }).subscribe({
+            next: value => {
+                this.health = value;
+            },
+            error: ex => {
+                this.health = {} as ServerHealth;
+            }
         });
     }
 
@@ -220,16 +192,67 @@ export class LlamaCppService {
             }
         }).subscribe({
             next: (value) => {
-                this.props.next(value);
-                this.defaultGenerationSettings.next(
-                    value.default_generation_settings
-                );
+                this.props = value;
+                const settings = value.default_generation_settings;
+                this.defaultGenerationSettings = settings;
             },
             error: err => {
-                this.props.error(err);
-                this.defaultGenerationSettings.error(err);
+                this.props = {} as ServerProps;
+                this.defaultGenerationSettings = {} as GenerationSettings;
             }
         });
     }
 
+    public getFormatter(): FormatterInfo {
+        const model = this.model;
+        let formatter: string;
+        let isKnownModel: boolean;
+        console.log(`Current model is: ${model}`);
+        if (model.indexOf('phind-codellama') > -1) {
+            formatter = 'markdown';
+            isKnownModel = true;
+        }
+        else if (model.indexOf('codellama') > -1
+            || model.indexOf('llama-2') > -1
+            || model.indexOf('llama2') > -1
+            || model.indexOf('mistral') > -1
+        ) {
+            formatter = 'llama2';
+            isKnownModel = true;
+        }
+        else if (model.indexOf('llama-3') > -1
+            || model.indexOf('llama3') > -1
+        ) {
+            formatter = 'llama3';
+            isKnownModel = true;
+        }
+        else if (model.indexOf('qwen') > -1
+            || model.indexOf('yi') > -1
+        ) {
+            formatter = 'chatml';
+            isKnownModel = true;
+        }
+        else if (model.indexOf('gemma-2') > -1) {
+            formatter = 'gemma2';
+            isKnownModel = true;
+        }
+        else if (model.indexOf('phi-3') > -1) {
+            formatter = 'phi3';
+            isKnownModel = true;
+        }
+        else {
+            formatter = 'chatml';
+            isKnownModel = false;
+        }
+        return {
+            formatter: formatters[formatter],
+            isKnownModel
+        };
+    }
+
+}
+
+export interface FormatterInfo {
+    formatter: PromptFormatter;
+    isKnownModel: boolean;
 }
