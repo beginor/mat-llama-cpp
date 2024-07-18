@@ -13,6 +13,7 @@ export const appConfig: ApplicationConfig = {
         provideZoneChangeDetection({ eventCoalescing: true }),
         provideRouter(routes, withHashLocation()),
         provideAnimationsAsync(),
+        provideHttpClient(withFetch()),
         FormsModule,
         LlamaCppService,
     ]
