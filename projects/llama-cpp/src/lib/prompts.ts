@@ -1,16 +1,3 @@
-export async function fetchPrompt<TPrompt extends Prompt>(
-    url: string
-): Promise<TPrompt> {
-    const res = await fetch(url);
-    const prompt = await res.json() as TPrompt;
-    if (prompt.system?.startsWith('/')) {
-        const res2 = await fetch(prompt.system);
-        const text = await res2.text();
-        prompt.system = text.trim();
-    }
-    return prompt;
-}
-
 export interface Prompt {
     system?: string;
 }

@@ -3,9 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 
 import {
-    ServerHealth, ServerProps, GenerationSettings, CompletionOptions,
-    CompletionResponseBase, CompletionFinalResponse, Timings, Embedding,
-    Content, Tokens,
+    CompletionFinalResponse,
+    CompletionOptions,
+    CompletionResponseBase,
+    Content,
+    Embedding,
+    GenerationSettings,
+    ServerHealth,
+    ServerProps,
+    Timings,
+    Tokens,
 } from './models';
 import { PromptFormatter } from './prompts';
 import { formatters } from './formatters';
@@ -13,7 +20,7 @@ import { formatters } from './formatters';
 @Injectable({
     providedIn: 'root'
 })
-export class LlamaCppService {
+export class LlamaService {
 
     public baseUrl: string;
 
@@ -168,7 +175,7 @@ export class LlamaCppService {
         };
     }
 
-    public checkHealth(): void {
+    public loadHealth(): void {
         this.http.get<ServerHealth>(`${this.baseUrl}/health`, {
             headers: {
                 'Accept': 'application/json',
@@ -179,12 +186,13 @@ export class LlamaCppService {
                 this.health = value;
             },
             error: ex => {
+                console.error(ex);
                 this.health = {} as ServerHealth;
             }
         });
     }
 
-    public checkProps(): void {
+    public loadProps(): void {
         this.http.get<ServerProps>(`${this.baseUrl}/props`, {
             headers: {
                 'Accept': 'application/json',
@@ -193,66 +201,14 @@ export class LlamaCppService {
         }).subscribe({
             next: (value) => {
                 this.props = value;
-                const settings = value.default_generation_settings;
-                this.defaultGenerationSettings = settings;
+                this.defaultGenerationSettings = value.default_generation_settings;
             },
-            error: err => {
+            error: ex => {
+                console.error(ex);
                 this.props = {} as ServerProps;
                 this.defaultGenerationSettings = {} as GenerationSettings;
             }
         });
     }
 
-    public getFormatter(): FormatterInfo {
-        const model = this.model;
-        let formatter: string;
-        let isKnownModel: boolean;
-        console.log(`Current model is: ${model}`);
-        if (model.indexOf('phind-codellama') > -1) {
-            formatter = 'markdown';
-            isKnownModel = true;
-        }
-        else if (model.indexOf('codellama') > -1
-            || model.indexOf('llama-2') > -1
-            || model.indexOf('llama2') > -1
-            || model.indexOf('mistral') > -1
-        ) {
-            formatter = 'llama2';
-            isKnownModel = true;
-        }
-        else if (model.indexOf('llama-3') > -1
-            || model.indexOf('llama3') > -1
-        ) {
-            formatter = 'llama3';
-            isKnownModel = true;
-        }
-        else if (model.indexOf('qwen') > -1
-            || model.indexOf('yi') > -1
-        ) {
-            formatter = 'chatml';
-            isKnownModel = true;
-        }
-        else if (model.indexOf('gemma-2') > -1) {
-            formatter = 'gemma2';
-            isKnownModel = true;
-        }
-        else if (model.indexOf('phi-3') > -1) {
-            formatter = 'phi3';
-            isKnownModel = true;
-        }
-        else {
-            formatter = 'chatml';
-            isKnownModel = false;
-        }
-        return {
-            formatter: formatters[formatter],
-            isKnownModel
-        };
-    }
-
-}
-
-export interface FormatterInfo {
-    formatter: PromptFormatter;
-    isKnownModel: boolean;
 }

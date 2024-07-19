@@ -1,1 +1,23 @@
-<router-outlet />
+<div class="app-container" [class.app-is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container
+    class="app-sidenav-container"
+  >
+    <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'side' : 'over'"
+      [opened]="mobileQuery.matches"
+    >
+      <app-sidebar data-bs-theme="dark"/>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="d-flex flex-column">
+      <mat-toolbar class="app-toolbar">
+        <button mat-icon-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="app-app-name">{{title}}</h1>
+      </mat-toolbar>
+      <router-outlet />
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

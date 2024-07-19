@@ -1,12 +1,14 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { provideRouter, withHashLocation } from '@angular/router';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import { LlamaService, PromptService } from 'llama-cpp';
 
 import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
-import { LlamaCppService } from 'llama-cpp';
+import { NavService } from './services/nav.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -14,7 +16,10 @@ export const appConfig: ApplicationConfig = {
         provideRouter(routes, withHashLocation()),
         provideAnimationsAsync(),
         provideHttpClient(withFetch()),
+        importProvidersFrom(MatNativeDateModule),
         FormsModule,
-        LlamaCppService,
+        LlamaService,
+        PromptService,
+        NavService,
     ]
 };

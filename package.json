@@ -22,7 +22,8 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3",
     "@angular/cdk": "18.1.0",
-    "@angular/material": "18.1.0"
+    "@angular/material": "18.1.0",
+    "bootstrap": "^5.3.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.1.0",

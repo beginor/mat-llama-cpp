@@ -228,8 +228,18 @@
             ],
             "styles": [
               {
-                "input": "@angular/material/prebuilt-themes/azure-blue.css",
-                "bundleName": "azure-blue",
+                "input": "bootstrap/dist/css/bootstrap-utilities.css",
+                "bundleName": "bootstrap-utilities",
+                "inject": true
+              },
+              {
+                "input": "bootstrap/dist/css/bootstrap-grid.css",
+                "bundleName": "bootstrap-grid",
+                "inject": true
+              },
+              {
+                "input": "@angular/material/prebuilt-themes/rose-red.css",
+                "bundleName": "rose-red",
                 "inject": true
               },
               {
