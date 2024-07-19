@@ -1,0 +1,16 @@
+:host {
+  max-width: 320px;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+ul.nav.nav-pills {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex: 1 1 auto;
+  overflow: auto;
+}

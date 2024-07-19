@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.chat-message {
+  white-space: pre-wrap;
+}
+.chat-message.user {
+  background-color: var(--bs-warning);
+}
+.chat-message.assistant {
+  background-color: var(--bs-info);
+}

@@ -1,0 +1,12 @@
+<img class='mb-2' style="width: auto;" src='/llama-cpp.png'
+  alt='LLaMA C++' />
+
+<mat-nav-list>
+  @for (node of vm.nodes; track node.url) {
+    <a mat-list-item [routerLink]="node.url" routerLinkActive="active">
+      {{node.label}}
+    </a>
+  }
+</mat-nav-list>
+
+<!--<app-chat-formatter class="mt-auto mx-2 mb-2" />-->

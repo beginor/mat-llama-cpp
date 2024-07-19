@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+:host:first-child::before {
+  content: '';
+  display: block;
+  flex: 1 0 0;
+}

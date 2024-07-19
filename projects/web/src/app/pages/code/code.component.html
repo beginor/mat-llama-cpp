@@ -1,0 +1,6 @@
+<app-chat-message-list class="flex-grow-1 mb-1 overflow-auto"
+  [messages]="messages" [answer]="answer"
+/>
+<app-chat-input [state]="state"
+  [input]="input" (inputTextChanged)="onInputTextChange($event)"
+/>

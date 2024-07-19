@@ -1,0 +1,6 @@
+@for (message of messages; track message.timestamp) {
+  <app-chat-message [message]="message"/>
+}
+@if (answer) {
+  <app-chat-message [message]="getAnswerMessage()" />
+}

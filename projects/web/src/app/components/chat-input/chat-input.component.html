@@ -1,0 +1,13 @@
+<div class="flex-grow-1 pe-1">
+  <mat-form-field class="w-100">
+    <mat-label>输入开始聊天...</mat-label>
+    <textarea matInput [(ngModel)]="input.text"></textarea>
+  </mat-form-field>
+</div>
+<div class="d-grid ps-1">
+  <button type="button" mat-button
+    (click)="sendText()"
+    [disabled]="!canSendText()">
+    <mat-icon>send</mat-icon>
+  </button>
+</div>
