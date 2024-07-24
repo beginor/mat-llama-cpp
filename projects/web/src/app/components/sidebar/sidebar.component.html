@@ -2,8 +2,11 @@
   alt='LLaMA C++' />
 
 <mat-nav-list>
-  @for (node of vm.nodes; track node.url) {
-    <a mat-list-item [routerLink]="node.url" routerLinkActive="active">
+  @for (node of vm.nodes; track $index) {
+    <a mat-list-item [routerLink]="node.url"
+      routerLinkActive
+      #link="routerLinkActive"
+      [activated]="link.isActive">
       {{node.label}}
     </a>
   }

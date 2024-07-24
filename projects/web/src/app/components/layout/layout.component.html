@@ -1,0 +1,13 @@
+<mat-sidenav-container class="h-100">
+  @let isHandset = (isHandset$ | async);
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+    [attr.role]="isHandset ? 'dialog' : 'navigation'"
+    [mode]="isHandset ? 'over' : 'side'"
+    [opened]="!isHandset"
+  >
+    <app-sidebar />
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

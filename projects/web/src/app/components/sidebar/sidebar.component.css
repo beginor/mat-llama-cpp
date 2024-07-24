@@ -1,5 +1,5 @@
 :host {
-  max-width: 320px;
+  max-width: 360px;
   padding: 0;
   height: 100%;
   display: flex;
@@ -7,10 +7,6 @@
   justify-content: start;
 }
 
-ul.nav.nav-pills {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  flex: 1 1 auto;
+mat-nav-list {
   overflow: auto;
 }

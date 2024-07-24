@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatListModule } from '@angular/material/list'
 
 // import {
@@ -21,10 +21,19 @@ import { NavService } from '../../services/nav.service';
 })
 export class SidebarComponent implements OnInit {
 
-    constructor(public vm: NavService) { }
+    constructor(
+        private router:  Router,
+        protected vm: NavService
+    ) {
+
+    }
 
     public ngOnInit(): void {
         this.vm.loadData();
+    }
+
+    protected isActivated(url: string): boolean {
+        return this.router.url.endsWith(url);
     }
 
 }

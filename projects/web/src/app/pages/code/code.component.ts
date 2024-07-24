@@ -47,7 +47,7 @@ export class CodeComponent {
                 responsePrefix: '',
                 stops: [],
             };
-            this.promptService.loadPrompt<InstructPrompt>(prompt).then(result => {
+            this.promptService.loadPrompt<InstructPrompt>(`/prompts/${prompt}.json`).then(result => {
                 Object.assign(this.instPrompt, result);
                 this.input.text = result.instruction;
             }).catch(ex => {
