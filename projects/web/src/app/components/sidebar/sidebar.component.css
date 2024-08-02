@@ -7,6 +7,14 @@
   justify-content: start;
 }
 
+.logo {
+  background-image: url(/llama-cpp.png);
+  background-color: #1c1f20;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 mat-nav-list {
   overflow: auto;
 }

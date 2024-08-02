@@ -1,5 +1,5 @@
 <mat-sidenav-container class="h-100">
-  @let isHandset = (isHandset$ | async);
+  @let isHandset = layout.isHandset();
   <mat-sidenav #drawer class="sidenav" fixedInViewport
     [attr.role]="isHandset ? 'dialog' : 'navigation'"
     [mode]="isHandset ? 'over' : 'side'"

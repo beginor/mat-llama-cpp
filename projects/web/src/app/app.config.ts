@@ -5,10 +5,7 @@ import { provideRouter, withHashLocation } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatNativeDateModule } from '@angular/material/core';
 
-import { LlamaService, PromptService } from 'llama-cpp';
-
 import { routes } from './app.routes';
-import { NavService } from './services/nav.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -18,8 +15,5 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(withFetch()),
         importProvidersFrom(MatNativeDateModule),
         FormsModule,
-        LlamaService,
-        PromptService,
-        NavService,
     ]
 };
