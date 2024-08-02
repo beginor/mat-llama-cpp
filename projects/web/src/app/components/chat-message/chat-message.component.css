@@ -3,10 +3,17 @@
 }
 
 mat-card.user {
-  background-color: var(--mat-list-active-indicator-color);
+  background-color: var(--mdc-filled-text-field-container-color);
 }
 mat-card.assistant {
-  /*background-color: rgba(26, 27, 31, 0.08);*/
+  /* background-color: var(--mat-list-active-indicator-color); */
+}
+
+.mat-mdc-card-content:last-child {
+  padding-bottom: 0;
+}
+.mat-mdc-card-content:first-child {
+  padding-top: 0;
 }
 
 markdown {
