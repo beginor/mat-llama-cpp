@@ -16,6 +16,10 @@ mat-card.assistant {
   padding-top: 0;
 }
 
-markdown {
-  font-size: 14px;
+.markdown {
+  font-size: 15px;
+}
+
+.markdown ::ng-deep pre[class*=language-] {
+  white-space: pre-wrap !important;
 }
