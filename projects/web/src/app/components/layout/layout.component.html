@@ -3,8 +3,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
     [attr.role]="isHandset ? 'dialog' : 'navigation'"
     [mode]="isHandset ? 'over' : 'side'"
-    [opened]="!isHandset"
-  >
+    [opened]="layout.isOpen()" (closed)="layout.onSiderClosed()">
     <app-sidebar />
   </mat-sidenav>
   <mat-sidenav-content>

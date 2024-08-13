@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 import {
     ChatPrompt, ChatMessage, LlamaService, PromptService
@@ -12,11 +16,16 @@ import {
     ChatInputComponent, ChatInput
 } from '../../components/chat-input/chat-input.component';
 import { UIState } from '../../components/ui-state';
+import { LayoutService } from '../../services/layout.service';
 
 @Component({
     selector: 'app-chat',
     standalone: true,
     imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatIconModule,
         ChatMessageListComponent,
         ChatInputComponent
     ],
@@ -38,6 +47,7 @@ export class ChatComponent {
         route: ActivatedRoute,
         private llamaService: LlamaService,
         private promptService: PromptService,
+        protected layout: LayoutService,
     ) {
         route.params.subscribe(params => {
             const prompt = params['prompt'] as string;
@@ -94,6 +104,12 @@ export class ChatComponent {
         this.messages.push(message);
 
         this.state = 'idle';
+    }
+
+    protected setStyle(style: string): void {
+        const element = document.getElementById('mat-theme') as HTMLLinkElement;
+        element.href = `./${style}.css`;
+
     }
 
 }
