@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +9,8 @@ import {
     ChatPrompt, ChatMessage, LlamaService, PromptService
 } from 'llama-cpp';
 
+import { StyleComponent } from '../../components/style/style.component';
+import { ChatSettingsComponent } from '../../components/chat-settings/chat-settings.component';
 import {
     ChatMessageListComponent
 } from '../../components/chat-message-list/chat-message-list.component';
@@ -26,13 +28,15 @@ import { LayoutService } from '../../services/layout.service';
         MatButtonModule,
         MatMenuModule,
         MatIconModule,
+        StyleComponent,
         ChatMessageListComponent,
-        ChatInputComponent
+        ChatInputComponent,
+        ChatSettingsComponent,
     ],
     templateUrl: './chat.component.html',
     styleUrl: './chat.component.css'
 })
-export class ChatComponent {
+export class ChatComponent implements OnInit {
 
     public messages: ChatMessage[] = [];
 
@@ -63,6 +67,10 @@ export class ChatComponent {
             });
             this.messages = [];
         });
+    }
+
+    public ngOnInit(): void {
+
     }
 
     public async onInputTextChange(text: string): Promise<void> {

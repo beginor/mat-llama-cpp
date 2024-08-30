@@ -5,15 +5,8 @@
     </button>
   }
   <span class="flex-grow-1">Chat</span>
-  <button type="button" mat-icon-button [matMenuTriggerFor]="styleMenu">
-    <mat-icon>style</mat-icon>
-  </button>
-  <mat-menu #styleMenu="matMenu">
-    <button type="button" mat-menu-item (click)="setStyle('rose-red')">Rose & Red</button>
-    <button type="button" mat-menu-item (click)="setStyle('azure-blue')">Azure & Blue</button>
-    <button type="button" mat-menu-item (click)="setStyle('magenta-violet')">Magenta & Violet</button>
-    <button type="button" mat-menu-item (click)="setStyle('cyan-orange')">Cyan & Orange</button>
-  </mat-menu>
+  <app-style />
+  <app-chat-settings />
 </mat-toolbar>
 <app-chat-message-list class="flex-grow-1 mb-1 overflow-auto flex-shrink-0 p-2"
   style="max-height: calc(100vh - 160px);"

@@ -36,4 +36,8 @@ export class SidebarComponent implements OnInit {
         return this.router.url.endsWith(url);
     }
 
+    protected showChatModal(): void {
+
+    }
+
 }

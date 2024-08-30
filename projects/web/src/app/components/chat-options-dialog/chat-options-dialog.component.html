@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>聊天设置</h2>
+<mat-dialog-content>
+  <form class="pt-2" #form="ngForm">
+    <div class="row">
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>系统提示词</mat-label>
+        <textarea matInput name="system_prompt">你是一个诚实的助手！</textarea>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>预置提示词</mat-label>
+        <textarea matInput name="prompt">请根据我的输入进行回答。</textarea>
+      </mat-form-field>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <div class="d-flex flex-column border text-secondary rounded-2 px-3 py-1">
+          <div class="d-flex align-items-start" style="font-size: 12px;">
+            <mat-label class="">温度</mat-label>
+            <span class="ms-auto">0.8</span>
+          </div>
+          <mat-slider [min]="0.0" [max]="2.0" [step]="0.01" discrete>
+            <input matSliderThumb [value]="0.8" matTooltip="设置模型应答的随机性。"/>
+          </mat-slider>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex flex-column border text-secondary rounded-2 px-3 py-1">
+          <div class="d-flex align-items-start" style="font-size: 12px;">
+            <mat-label class="">预测</mat-label>
+            <span class="ms-auto">255</span>
+          </div>
+          <mat-slider class="mx-3" [min]="-1" [max]="2047" [step]="16" discrete>
+            <input matSliderThumb [value]="255" matTooltip="设置模型应答的 token 数量。"
+            />
+          </mat-slider>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-checkbox name="streaming">流式响应</mat-checkbox>
+      </div>
+      <div class="col d-flex align-items-center">
+        <mat-slide-toggle>高级</mat-slide-toggle>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">取消</button>
+  <button mat-button [mat-dialog-close] cdkFocusInitial>确定</button>
+</mat-dialog-actions>
