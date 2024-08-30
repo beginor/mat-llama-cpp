@@ -1,7 +1,7 @@
 <div class="logo mb-2">
 </div>
 
-<mat-nav-list>
+<mat-nav-list class="mx-2">
   @for (node of vm.nodes; track $index) {
     <a mat-list-item [routerLink]="node.url"
       routerLinkActive
