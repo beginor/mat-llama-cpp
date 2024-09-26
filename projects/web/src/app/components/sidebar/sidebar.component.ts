@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { MatListModule } from '@angular/material/list'
+import { NzMenuModule } from 'ng-zorro-antd/menu'
 
 // import {
 //     ChatFormatterComponent
 // } from '../chat-formatter/chat-formatter.component';
 import { NavService } from '../../services/nav.service';
+import { ThemeType } from '../../services/layout.service';
 
 @Component({
     selector: 'app-sidebar',
     standalone: true,
     imports: [
-        MatListModule,
+        NzMenuModule,
         RouterLink,
         RouterLinkActive,
         // ChatFormatterComponent
@@ -20,6 +21,8 @@ import { NavService } from '../../services/nav.service';
     styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
+
+    public theme = input<ThemeType>('dark');
 
     constructor(
         private router:  Router,

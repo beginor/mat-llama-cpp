@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { MarkdownModule, provideMarkdown } from 'ngx-markdown';
 
 import { ChatMessage } from 'llama-cpp';
@@ -11,7 +11,7 @@ import { ChatMessage } from 'llama-cpp';
         provideMarkdown({}),
     ],
     imports: [
-        MatCardModule,
+        NzCardModule,
         MarkdownModule,
     ],
     templateUrl: './chat-message.component.html',

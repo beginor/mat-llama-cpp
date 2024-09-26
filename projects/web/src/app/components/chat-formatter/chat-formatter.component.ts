@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { FormatterService } from '../../services/formatter.service';
+import { LlamaService, PromptService } from 'llama-cpp';
 
 @Component({
     selector: 'app-chat-formatter',
@@ -12,10 +12,19 @@ import { FormatterService } from '../../services/formatter.service';
 })
 export class ChatFormatterComponent implements OnInit {
 
-    constructor(protected vm: FormatterService) { }
+    protected model = signal('');
+    protected isKnown = signal(false);
+
+    constructor(
+        private prompt: PromptService,
+        private llama: LlamaService
+    ) { }
 
     public ngOnInit(): void {
-        void this.vm.getServerModel();
+        const model = this.llama.model;
+        const formatter = this.prompt.getFormatter(model);
+        this.model.set(model);
+        this.isKnown.set(formatter.isKnownModel);
     }
 
 }

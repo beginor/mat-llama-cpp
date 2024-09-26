@@ -1,3 +1,14 @@
+import { CompletionOptions } from './models';
+
+export interface ChatSession {
+    options: CompletionOptions;
+    systemPrompt?: string;
+    userPrompt?: string;
+    responsePrefix?: string;
+    stops?: string[];
+    history: ChatMessage[];
+}
+
 export interface Prompt {
     system?: string;
 }

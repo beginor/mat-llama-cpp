@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 import { LlamaService } from 'llama-cpp';
 
@@ -7,7 +7,7 @@ import { LlamaService } from 'llama-cpp';
   selector: 'app-test',
   standalone: true,
   imports: [
-      MatButtonModule,
+      NzButtonModule,
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'

@@ -1,14 +1,11 @@
-<div class="flex-grow-1 pe-1">
-  <mat-form-field class="w-100">
-    <mat-label>输入开始聊天...</mat-label>
-    <input matInput type="text" [(ngModel)]="input.text"
-      (keyup.enter)="sendText()"/>
-  </mat-form-field>
+<div class="flex-grow-1">
+    <input class="w-100" nz-input type="text" [(ngModel)]="input.text"
+      (keyup.enter)="sendText()" placeholder="输入开始聊天..." nzSize="large" />
 </div>
-<div class="pt-2">
-  <button type="button" mat-icon-button
+<div class="ms-1">
+  <button type="button" nz-button nzType="primary" nzSize="large"
     (click)="sendText()"
     [disabled]="!canSendText()">
-    <mat-icon>send</mat-icon>
+    <span nz-icon nzType="send"></span>
   </button>
 </div>

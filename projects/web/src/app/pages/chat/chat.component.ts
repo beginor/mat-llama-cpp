@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 import {
     ChatPrompt, ChatMessage, LlamaService, PromptService
 } from 'llama-cpp';
 
-import { StyleComponent } from '../../components/style/style.component';
+// import { StyleComponent } from '../../components/style/style.component';
 import { ChatSettingsComponent } from '../../components/chat-settings/chat-settings.component';
 import {
     ChatMessageListComponent
@@ -24,11 +23,10 @@ import { LayoutService } from '../../services/layout.service';
     selector: 'app-chat',
     standalone: true,
     imports: [
-        MatToolbarModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatIconModule,
-        StyleComponent,
+        NzButtonModule,
+        NzMenuModule,
+        NzIconModule,
+        // StyleComponent,
         ChatMessageListComponent,
         ChatInputComponent,
         ChatSettingsComponent,

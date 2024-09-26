@@ -31,4 +31,8 @@ export class LayoutService {
         this.siderOpened.set(true);
     }
 
+    public theme = signal<ThemeType>('dark');
+
 }
+
+export type ThemeType = 'dark' | 'light';

@@ -1,15 +1,12 @@
 <div class="logo">
 </div>
 
-<mat-nav-list class="mx-2">
+<ul class="mx-1" nz-menu [nzTheme]="theme()">
   @for (node of vm.nodes; track $index) {
-    <a mat-list-item [routerLink]="node.url"
-      routerLinkActive
-      #link="routerLinkActive"
-      [activated]="link.isActive">
-      {{node.label}}
-    </a>
+    <li nz-menu-item nzMatchRouter>
+      <a [routerLink]="node.url">{{node.label}}</a>
+    </li>
   }
-</mat-nav-list>
+</ul>
 
 <!--<app-chat-formatter class="mt-auto mx-2 mb-2" />-->

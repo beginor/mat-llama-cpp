@@ -1,15 +1,15 @@
-<mat-toolbar class="flex-shrink-1">
+<div class="flex-shrink-1">
   @if (layout.isHandset()) {
-    <button type="button" mat-icon-button (click)="layout.openSider()">
-      <mat-icon>menu</mat-icon>
+    <button type="button" nz-button (click)="layout.openSider()">
+      <span nz-icon nzType="menu"></span>
     </button>
   }
   <span class="flex-grow-1">Chat</span>
-  <app-style />
+  <!-- <app-style /> -->
   <app-chat-settings />
-</mat-toolbar>
+</div>
 <app-chat-message-list class="flex-grow-1 mb-1 overflow-auto flex-shrink-0 p-2"
-  style="max-height: calc(100vh - 160px);"
+  style="max-height: calc(100vh - 94px);"
   [messages]="messages" [answer]="answer"
 />
 <app-chat-input class="flex-shrink-1" [state]="state"

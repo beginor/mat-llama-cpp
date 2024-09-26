@@ -217,7 +217,9 @@
             "index": "projects/web/src/index.html",
             "browser": "projects/web/src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init",
+              "projects/web/src/polyfills.ts"
             ],
             "tsConfig": "projects/web/tsconfig.app.json",
             "assets": [
@@ -229,34 +231,25 @@
                 "glob": "**/*",
                 "input": "node_modules/prismjs",
                 "output": "prismjs"
+              },
+              {
+                "input": "node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "glob": "**/*.svg",
+                "output": "assets/icons/antd/assets"
               }
             ],
             "styles": [
               {
-                "input": "bootstrap/dist/css/bootstrap-utilities.min.css",
-                "bundleName": "bootstrap-utilities",
+                "input": "node_modules/ng-zorro-antd/ng-zorro-antd.variable.css",
+                "bundleName": "ng-zorro-antd",
                 "inject": true
               },
               {
-                "input": "@angular/material/prebuilt-themes/azure-blue.css",
-                "bundleName": "azure-blue",
-                "inject": false
+                "input": "bootstrap/dist/css/bootstrap.min.css",
+                "bundleName": "bootstrap",
+                "inject": true
               },
-              {
-                "input": "@angular/material/prebuilt-themes/rose-red.css",
-                "bundleName": "rose-red",
-                "inject": false
-              },
-              {
-                "input": "@angular/material/prebuilt-themes/cyan-orange.css",
-                "bundleName": "cyan-orange",
-                "inject": false
-              },
-              {
-                "input": "@angular/material/prebuilt-themes/magenta-violet.css",
-                "bundleName": "magenta-violet",
-                "inject": false
-              },
+
               {
                 "input": "projects/web/src/styles.css",
                 "bundleName": "styles",
@@ -270,8 +263,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2MB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -323,11 +316,6 @@
               }
             ],
             "styles": [
-              {
-                "input": "@angular/material/prebuilt-themes/azure-blue.css",
-                "bundleName": "azure-blue",
-                "inject": true
-              },
               {
                 "input": "projects/web/src/styles.css",
                 "bundleName": "styles.css",

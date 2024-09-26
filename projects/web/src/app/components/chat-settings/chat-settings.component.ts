@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 
-import { ChatOptionsDialogComponent } from '../chat-options-dialog/chat-options-dialog.component';
+// import { ChatOptionsDialogComponent } from '../chat-options-dialog/chat-options-dialog.component';
 
 @Component({
     selector: 'app-chat-settings',
     standalone: true,
     imports: [
-        MatButtonModule,
-        MatIconModule,
-        MatDialogModule,
+        NzButtonModule,
+        NzIconModule,
+        NzModalModule,
     ],
     templateUrl: './chat-settings.component.html',
     styleUrl: './chat-settings.component.css'
@@ -20,7 +20,7 @@ import { ChatOptionsDialogComponent } from '../chat-options-dialog/chat-options-
 export class ChatSettingsComponent implements OnInit {
 
     constructor(
-        private dialog: MatDialog
+        private dialog: NzModalService
     ) { }
 
     public ngOnInit(): void {
@@ -28,13 +28,13 @@ export class ChatSettingsComponent implements OnInit {
     }
 
     protected showDialog(): void {
-        const dialogRef = this.dialog.open(
-            ChatOptionsDialogComponent,
-            {
-                width: '50vw',
-                data: {}
-            }
-        );
+        // const dialogRef = this.dialog.create(
+        //     ChatOptionsDialogComponent,
+        //     {
+        //         width: '50vw',
+        //         data: {}
+        //     }
+        // );
 
     }
 

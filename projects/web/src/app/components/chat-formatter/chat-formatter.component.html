@@ -1,4 +1,5 @@
-<div [class.text-success]="vm.isKnownModel"
-  [class.text-warning]="!vm.isKnownModel">
-  {{vm.formatter}}
+@let _isKnown = isKnown();
+<div [class.text-success]="_isKnown"
+  [class.text-warning]="!_isKnown">
+  {{model()}}
 </div>

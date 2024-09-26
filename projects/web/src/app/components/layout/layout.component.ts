@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { LayoutService } from '../../services/layout.service';
@@ -14,14 +8,7 @@ import { LayoutService } from '../../services/layout.service';
     selector: 'app-layout',
     standalone: true,
     imports: [
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatListModule,
-        MatIconModule,
-        AsyncPipe,
-        RouterLink,
-        RouterLinkActive,
+        NzLayoutModule,
         SidebarComponent
     ],
     templateUrl: './layout.component.html',

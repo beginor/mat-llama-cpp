@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 import { UIState } from '../ui-state';
 
@@ -11,9 +11,9 @@ import { UIState } from '../ui-state';
     standalone: true,
     imports: [
         FormsModule,
-        MatInputModule,
-        MatButtonModule,
-        MatIconModule,
+        NzInputModule,
+        NzButtonModule,
+        NzIconModule,
     ],
     templateUrl: './chat-input.component.html',
     styleUrl: './chat-input.component.css'

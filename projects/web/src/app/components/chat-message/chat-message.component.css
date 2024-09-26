@@ -23,3 +23,11 @@ mat-card.assistant {
 .markdown ::ng-deep pre[class*=language-] {
   white-space: pre-wrap !important;
 }
+
+.markdown ::ng-deep p, .markdown ::ng-deep ol,.markdown ::ng-deep ul {
+  margin-bottom: .25rem;
+}
+
+.markdown ::ng-deep > p:last-child {
+  margin-bottom: 0;
+}

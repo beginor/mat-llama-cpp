@@ -14,8 +14,6 @@ import {
     Timings,
     Tokens,
 } from './models';
-import { PromptFormatter } from './prompts';
-import { formatters } from './formatters';
 
 @Injectable({
     providedIn: 'root'

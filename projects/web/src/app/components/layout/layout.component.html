@@ -1,12 +1,10 @@
-<mat-sidenav-container class="h-100">
+<nz-layout class="h-100">
   @let isHandset = layout.isHandset();
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-    [attr.role]="isHandset ? 'dialog' : 'navigation'"
-    [mode]="isHandset ? 'over' : 'side'"
-    [opened]="layout.isOpen()" (closed)="layout.onSiderClosed()">
+  <nz-sider nzCollapsible nzWidth="220px" [nzCollapsedWidth]="0" [nzCollapsed]="isHandset"
+    [nzTheme]="layout.theme()" [nzZeroTrigger]="null" [nzTrigger]="null">
     <app-sidebar />
-  </mat-sidenav>
-  <mat-sidenav-content>
+  </nz-sider>
+  <nz-content>
     <ng-content></ng-content>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </nz-content>
+</nz-layout>
