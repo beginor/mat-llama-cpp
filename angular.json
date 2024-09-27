@@ -240,16 +240,15 @@
             ],
             "styles": [
               {
-                "input": "node_modules/ng-zorro-antd/ng-zorro-antd.variable.css",
-                "bundleName": "ng-zorro-antd",
-                "inject": true
-              },
-              {
                 "input": "bootstrap/dist/css/bootstrap.min.css",
                 "bundleName": "bootstrap",
                 "inject": true
               },
-
+              {
+                "input": "node_modules/ng-zorro-antd/ng-zorro-antd.variable.css",
+                "bundleName": "ng-zorro-antd",
+                "inject": true
+              },
               {
                 "input": "projects/web/src/styles.css",
                 "bundleName": "styles",

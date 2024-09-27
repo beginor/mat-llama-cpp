@@ -1,7 +1,7 @@
 <div class="logo">
 </div>
 
-<ul class="mx-1" nz-menu [nzTheme]="theme()">
+<ul nz-menu [nzTheme]="theme()">
   @for (node of vm.nodes; track $index) {
     <li nz-menu-item nzMatchRouter>
       <a [routerLink]="node.url">{{node.label}}</a>

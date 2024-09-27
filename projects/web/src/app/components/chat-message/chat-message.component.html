@@ -1,5 +1,4 @@
-<nz-card class="mb-2" [class]="message.role"
-  appearance="outlined">
+<nz-card class="mb-2" [class]="message.role" [class.border-warning]="message.role === 'user'">
   <div [class]="message.role">
     <markdown class="markdown" [data]="message.content"></markdown>
   </div>

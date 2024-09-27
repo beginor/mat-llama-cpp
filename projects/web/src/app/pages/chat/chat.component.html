@@ -1,14 +1,14 @@
-<div class="flex-shrink-1">
+<div class="flex-shrink-1 d-flex align-items-center justify-content-start bg-light-subtle p-2">
   @if (layout.isHandset()) {
     <button type="button" nz-button (click)="layout.openSider()">
       <span nz-icon nzType="menu"></span>
     </button>
   }
-  <span class="flex-grow-1">Chat</span>
+  <span class="flex-grow-1 ps-2">Chat</span>
   <!-- <app-style /> -->
   <app-chat-settings />
 </div>
-<app-chat-message-list class="flex-grow-1 mb-1 overflow-auto flex-shrink-0 p-2"
+<app-chat-message-list class="flex-grow-1 mb-1 overflow-auto flex-shrink-0 py-2"
   style="max-height: calc(100vh - 94px);"
   [messages]="messages" [answer]="answer"
 />
