@@ -9,8 +9,10 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 # html/scss/css files
-[*.{html,scss,css,json,xml,csproj,config,yml,js}]
+[*.{html,scss,css,json,xml,csproj,config,yml,js,mjs,cjs}]
 indent_size = 2
 # markdown files
 [*.md]
 trim_trailing_whitespace = false
+[.{js,ts,mjs,cjs}]
+quote_stype = 'single'
