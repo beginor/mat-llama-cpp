@@ -8,7 +8,7 @@ import { LlamaService, PromptService } from 'llama-cpp';
     standalone: true,
     imports: [FormsModule],
     templateUrl: './chat-formatter.component.html',
-    styleUrl: './chat-formatter.component.css'
+    styleUrl: './chat-formatter.component.css',
 })
 export class ChatFormatterComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class ChatFormatterComponent implements OnInit {
         private llama: LlamaService
     ) { }
 
-    public ngOnInit(): void {
+    public async ngOnInit(): Promise<void> {
         const model = this.llama.model;
         const formatter = this.prompt.getFormatter(model);
         this.model.set(model);

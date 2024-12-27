@@ -1,5 +1,5 @@
 import { Component, OnInit, input } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 
 // import {
@@ -14,7 +14,7 @@ import { ThemeType } from '../../services/layout.service';
     imports: [
         NzMenuModule,
         RouterLink,
-        RouterLinkActive,
+        // RouterLinkActive,
         // ChatFormatterComponent
     ],
     templateUrl: './sidebar.component.html',
@@ -40,7 +40,8 @@ export class SidebarComponent implements OnInit {
     }
 
     protected showChatModal(): void {
-
+        debugger;
+        console.log('');
     }
 
 }

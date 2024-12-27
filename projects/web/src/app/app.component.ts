@@ -32,7 +32,7 @@ export class AppComponent implements OnDestroy {
         }, 60 * 1000);
     }
 
-    public ngOnDestroy() {
+    public ngOnDestroy(): void {
         clearInterval(this.handle);
     }
 
