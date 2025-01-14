@@ -3,8 +3,7 @@
       (keyup.enter)="sendText()" placeholder="输入开始聊天..." nzSize="large" />
 </div>
 <div class="ms-1">
-  <button type="button" nz-button nzType="primary" nzSize="large"
-    (click)="sendText()"
+  <button type="button" nz-button nzType="primary" nzSize="large" (click)="sendText()"
     [disabled]="!canSendText()">
     <span nz-icon nzType="send"></span>
   </button>

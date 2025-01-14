@@ -2,8 +2,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "llama-cpp": [
-        "./dist/llama-cpp"
+      "llama": [
+        "./dist/llama"
       ]
     },
     "baseUrl": "./",

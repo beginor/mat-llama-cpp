@@ -2,7 +2,7 @@ import { RouterOutlet } from '@angular/router';
 import { Component, OnDestroy } from '@angular/core';
 import { NzIconModule, NzIconService } from 'ng-zorro-antd/icon';
 
-import { LlamaService } from 'llama-cpp';
+import { LlamaService } from 'llama';
 
 import { LayoutComponent } from './components/layout/layout.component';
 

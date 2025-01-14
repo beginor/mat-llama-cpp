@@ -34,13 +34,13 @@ export interface CompletionOptions {
     mirostat_tau: number;
     mirostat_eta: number;
     grammar: string | undefined;
-    json_schema: Object | undefined;
+    json_schema: unknown | undefined;
     seed: number;
     ignore_eos: boolean;
     logit_bias: [string | number, number][];
     n_probs: number;
     min_keep: number;
-    image_data: any[];
+    image_data: unknown[];
     cache_prompt: boolean;
     api_key: string | undefined;
     prompt: string;

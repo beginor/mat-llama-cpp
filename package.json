@@ -24,7 +24,6 @@
     "@angular/localize": "^19.0.0",
     "@angular/cdk": "^19.0.0",
     "ng-zorro-antd": "^19.0.0",
-    "date-fns": "^3.6.0",
     "@ant-design/icons-angular": "^19.0.0",
     "bootstrap": "^5.3.3",
     "ngx-markdown": "^19.0.0",

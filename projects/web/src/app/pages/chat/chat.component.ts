@@ -6,7 +6,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 
 import {
     ChatPrompt, ChatMessage, LlamaService, PromptService
-} from 'llama-cpp';
+} from 'llama';
 
 // import { StyleComponent } from '../../components/style/style.component';
 import { ChatSettingsComponent } from '../../components/chat-settings/chat-settings.component';

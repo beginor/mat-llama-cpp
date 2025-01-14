@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
-import { LlamaService } from 'llama-cpp';
+import { LlamaService } from 'llama';
 
 @Component({
   selector: 'app-test',

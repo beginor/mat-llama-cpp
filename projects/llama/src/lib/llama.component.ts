@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     selector: 'lib-llama',
     standalone: true,
     imports: [],
-    template: `<p>llama-cpp works!</p>`,
+    template: `<p>llama works!</p>`,
     styles: ``
 })
 export class LlamaComponent {

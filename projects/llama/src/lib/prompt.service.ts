@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 
 import { Prompt, PromptFormatter } from './prompts';
-import { formatters } from "./formatters";
+import { formatters } from './formatters';
 
 @Injectable({
     providedIn: 'root'
@@ -34,35 +34,35 @@ export class PromptService {
         let formatter: string;
         let isKnownModel: boolean;
         console.log(`Current model is: ${model}`);
-        if (model.indexOf('phind-codellama') > -1) {
+        if (model.includes('phind-codellama')) {
             formatter = 'markdown';
             isKnownModel = true;
         }
-        else if (model.indexOf('codellama') > -1
-            || model.indexOf('llama-2') > -1
-            || model.indexOf('llama2') > -1
-            || model.indexOf('mistral') > -1
+        else if (model.includes('codellama')
+            || model.includes('llama-2')
+            || model.includes('llama2')
+            || model.includes('mistral')
         ) {
             formatter = 'llama2';
             isKnownModel = true;
         }
-        else if (model.indexOf('llama-3') > -1
-            || model.indexOf('llama3') > -1
+        else if (model.includes('llama-3')
+            || model.includes('llama3')
         ) {
             formatter = 'llama3';
             isKnownModel = true;
         }
-        else if (model.indexOf('qwen') > -1
-            || model.indexOf('yi') > -1
+        else if (model.includes('qwen')
+            || model.includes('yi')
         ) {
             formatter = 'chatml';
             isKnownModel = true;
         }
-        else if (model.indexOf('gemma-2') > -1) {
+        else if (model.includes('gemma-2')) {
             formatter = 'gemma2';
             isKnownModel = true;
         }
-        else if (model.indexOf('phi-3') > -1) {
+        else if (model.includes('phi-3')) {
             formatter = 'phi3';
             isKnownModel = true;
         }

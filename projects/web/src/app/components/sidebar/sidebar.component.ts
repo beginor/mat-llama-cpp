@@ -40,8 +40,7 @@ export class SidebarComponent implements OnInit {
     }
 
     protected showChatModal(): void {
-        debugger;
-        console.log('');
+        console.log('chat model not implemented!');
     }
 
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import {
     InstructPrompt, ChatMessage, LlamaService, PromptService
-} from 'llama-cpp';
+} from 'llama';
 
 import {
     ChatMessageListComponent

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, AfterViewChecked } from '@angular/core';
 
-import { ChatMessage } from 'llama-cpp';
+import { ChatMessage } from 'llama';
 
 import {
     ChatMessageComponent

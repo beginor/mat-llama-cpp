@@ -112,6 +112,7 @@ export class LlamaService {
                     const text = line.substring(prefix.length + 1).trim();
                     if (text) {
                         try {
+                            // eslint-disable-next-line @stylistic/max-len
                             const json = JSON.parse(text) as CompletionResponseBase;
                             const content = json.content;
                             if (json.stop) {
@@ -199,7 +200,7 @@ export class LlamaService {
         }).subscribe({
             next: (value) => {
                 this.props = value;
-                this.defaultGenerationSettings = value.default_generation_settings;
+                this.defaultGenerationSettings = value.default_generation_settings; // eslint-disable-line @stylistic/max-len
             },
             error: ex => {
                 console.error(ex);
