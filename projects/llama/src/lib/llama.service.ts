@@ -84,7 +84,7 @@ export class LlamaService {
         options: CompletionOptions,
         signal: AbortSignal | undefined = undefined
     ): AsyncIterable<string> {
-        const apiUrl: string = `${this.baseUrl}/completions`;
+        const apiUrl = `${this.baseUrl}/completions`;
         const res = await fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -112,8 +112,9 @@ export class LlamaService {
                     const text = line.substring(prefix.length + 1).trim();
                     if (text) {
                         try {
-                            // eslint-disable-next-line @stylistic/max-len
-                            const json = JSON.parse(text) as CompletionResponseBase;
+                            const json = JSON.parse(
+                                text
+                            ) as CompletionResponseBase;
                             const content = json.content;
                             if (json.stop) {
                                 const fr = json as CompletionFinalResponse;

@@ -102,7 +102,7 @@ export class Gemma2Formatter implements PromptFormatter {
         prompt.push(content.trim());
     }
 
-    private addMessageFooter(prompt: string[], role: Role): void {
+    private addMessageFooter(prompt: string[], _role: Role): void {
         prompt.push(endOfTurn);
         prompt.push(newLine);
     }

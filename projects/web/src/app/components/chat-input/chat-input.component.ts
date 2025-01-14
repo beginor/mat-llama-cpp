@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -20,25 +20,26 @@ import { UIState } from '../ui-state';
 })
 export class ChatInputComponent {
 
-    @Input()
-    public state: UIState = 'idle';
+    public readonly state = input<UIState>('idle');
 
-    @Input()
-    public input: ChatInput = { text: '' };
-    @Output()
-    public inputTextChanged = new EventEmitter<string>();
+    public readonly text = input<string>('');
+    public readonly textChanged = output<string>();
+
+    protected textValue = '';
+
+    constructor() {
+        effect(() => {
+            this.textValue = this.text();
+        });
+    }
 
     public sendText(): void {
-        this.inputTextChanged.next(this.input.text);
+        const text = this.textValue.trim();
+        this.textChanged.emit(text);
     }
 
     public canSendText(): boolean {
-        return this.state === 'idle'
-            && !!this.input.text.trim();
+        return this.state() === 'idle' && !!this.textValue.trim();
     }
 
-}
-
-export interface ChatInput {
-    text: string;
 }

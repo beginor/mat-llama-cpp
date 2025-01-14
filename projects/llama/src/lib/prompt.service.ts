@@ -33,7 +33,7 @@ export class PromptService {
     ): FormatterInfo {
         let formatter: string;
         let isKnownModel: boolean;
-        console.log(`Current model is: ${model}`);
+        console.warn(`Current model is: ${model}`);
         if (model.includes('phind-codellama')) {
             formatter = 'markdown';
             isKnownModel = true;

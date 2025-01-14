@@ -1,10 +1,11 @@
 <div class="flex-grow-1">
-    <input class="w-100" nz-input type="text" [(ngModel)]="input.text"
-      (keyup.enter)="sendText()" placeholder="输入开始聊天..." nzSize="large" />
+    <input class="w-100" type="text" nz-input nzSize="large" [(ngModel)]="textValue"
+      (keyup.enter)="sendText()" placeholder="输入开始聊天..." name="text"
+    />
 </div>
 <div class="ms-1">
-  <button type="button" nz-button nzType="primary" nzSize="large" (click)="sendText()"
-    [disabled]="!canSendText()">
+  <button type="button" nz-button nzType="primary" nzSize="large"
+    (click)="sendText()" [disabled]="!canSendText()">
     <span nz-icon nzType="send"></span>
   </button>
 </div>

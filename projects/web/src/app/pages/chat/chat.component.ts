@@ -3,19 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 import {
     ChatPrompt, ChatMessage, LlamaService, PromptService
 } from 'llama';
 
-// import { StyleComponent } from '../../components/style/style.component';
 import { ChatSettingsComponent } from '../../components/chat-settings/chat-settings.component';
-import {
-    ChatMessageListComponent
-} from '../../components/chat-message-list/chat-message-list.component';
-import {
-    ChatInputComponent, ChatInput
-} from '../../components/chat-input/chat-input.component';
+import { ChatMessageListComponent } from '../../components/chat-message-list/chat-message-list.component';
+import { ChatInputComponent } from '../../components/chat-input/chat-input.component';
 import { UIState } from '../../components/ui-state';
 import { LayoutService } from '../../services/layout.service';
 
@@ -26,7 +22,7 @@ import { LayoutService } from '../../services/layout.service';
         NzButtonModule,
         NzMenuModule,
         NzIconModule,
-        // StyleComponent,
+        NzCardModule,
         ChatMessageListComponent,
         ChatInputComponent,
         ChatSettingsComponent,
@@ -41,7 +37,7 @@ export class ChatComponent implements OnInit {
     public answer = '';
 
     public state: UIState = 'idle';
-    public input: ChatInput = { text: '' };
+    public input = '';
 
     private chatPrompt!: ChatPrompt;
 
@@ -59,7 +55,7 @@ export class ChatComponent implements OnInit {
             };
             this.promptService.loadPrompt<ChatPrompt>(`/prompts/${prompt}.json`).then(result => {
                 this.chatPrompt.system = result.system;
-                this.input.text = result.messages[0].content;
+                this.input = result.messages[0].content;
             }).catch(ex => {
                 console.error(ex);
             });
@@ -71,13 +67,13 @@ export class ChatComponent implements OnInit {
 
     }
 
-    public async onInputTextChange(text: string): Promise<void> {
+    public async onTextChange(text: string): Promise<void> {
         this.state = 'busy';
         this.chatPrompt.messages.push({ role: 'user', content: text });
         this.messages.push(
             { role: 'user', content: text, timestamp: Date.now() }
         );
-        this.input.text = '';
+        this.input = '';
 
         const model = this.llamaService.model;
         const { formatter } = this.promptService.getFormatter(model);
@@ -110,12 +106,6 @@ export class ChatComponent implements OnInit {
         this.messages.push(message);
 
         this.state = 'idle';
-    }
-
-    protected setStyle(style: string): void {
-        const element = document.getElementById('mat-theme') as HTMLLinkElement;
-        element.href = `./${style}.css`;
-
     }
 
 }

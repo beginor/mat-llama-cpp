@@ -32,7 +32,7 @@ export default tseslint.config(
     processor: angular.processInlineTemplates,
     rules: {
       'no-debugger': 'error',
-      'no-console': ['warn', { allow: ['error'] }],
+      'no-console': ['warn', { allow: ['error', 'warn'] }],
       '@stylistic/max-len': [
         'error', {
           code: 80,
@@ -69,6 +69,11 @@ export default tseslint.config(
             parameterProperties: 'explicit', properties: 'explicit',
           }
         }
+      ],
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' }
       ],
       "@angular-eslint/directive-selector": [
         "error",

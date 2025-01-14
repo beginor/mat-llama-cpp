@@ -5,7 +5,3 @@
   flex-direction: column;
   overflow-x: hidden;
 }
-
-mat-toolbar {
-  background-color: var(--mat-list-active-indicator-color);
-}

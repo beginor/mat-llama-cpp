@@ -9,5 +9,4 @@ export * from './lib/formatters';
 
 export * from './lib/llama.service';
 export * from './lib/models';
-export * from './lib/llama.component';
 export * from './lib/prompt.service';
